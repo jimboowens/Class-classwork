@@ -14,6 +14,8 @@ class Person(object):
         print self.name, self.email, self.phone
     def add_friend(self, other_person_name):
         self.friends.append(other_person_name.name)
+    def __repr__(self):
+        return "%s %s %s " % ( self.name, self.email, self.phone)
 # Write code to
 
 # Instantiate an instance object of Person with name of 'Sonny', email of 'sonny@hotmail.com', 
@@ -58,3 +60,4 @@ print Jordan.friends
 Sonny.add_friend(Jordan)
 print Sonny.friends
 print Sonny.greeting_count
+print Jordan
