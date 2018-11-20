@@ -51,7 +51,11 @@ while (theHero.is_alive() and keep_on == "y"):
             print "the %s striketh thee for %d damage!" %(monster.name,monster.power)
             if theHero.health <= 0:
                 print "Thou hast been slain."
-                break
+                keep_on = raw_input ("Keep on playing (y or n)? > ")
+                if keep_on == "y":
+                    theHero.health = 10
+                else:
+                    break
         # else:
             # os.system("say Hooray. Thou hast killed the monster!")
         if theHero.health < 5:
@@ -61,6 +65,12 @@ while (theHero.is_alive() and keep_on == "y"):
             print 'You died... Game over!'
         if monster.health <=0:
             print "The %s hath been slain! Great work, hero %s!" %(monster.name,hero_name)
+            keep_on = raw_input ("do you want to keep playing (y or n)? > ")
+            if keep_on == "y":
+                theHero.health = 10
+            else:
+                break
+        # os.system("clear")
         # print "%d is the monster's health." %monster.health
         # else:
         #     keep_on = raw_input("Would you like to keep playing (y or n)? > ")
@@ -68,5 +78,4 @@ while (theHero.is_alive() and keep_on == "y"):
         #         theHero.health = 10
         #     else:    
         #         break
-        print "%d is the monster's health." %monster.health
-        # os.system("clear")
+        # if monster.health <= 0:
