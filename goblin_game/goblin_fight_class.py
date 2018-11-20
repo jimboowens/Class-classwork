@@ -3,13 +3,10 @@ import random
 from Hero import Hero
 from Goblin import Goblin
 from Vampire import Vampire
-from Helper import Helper
 hero_name = raw_input( "What is your name, brave soul? > ")
-get_helper = raw_input("Would you like to enlist a helper (y or n)? > ")
 # when it's a function, you need a (), but when a variable no..
 
 theHero = Hero(hero_name)
-helper = Helper()
 theHero.cheer_hero()
 
 while (theHero.is_alive()):
@@ -18,12 +15,6 @@ while (theHero.is_alive()):
         monster = Goblin()
     else:
         monster = Vampire()
-    if get_helper == "y":
-        print "Wise choice, sagely %s! %s shalt helpeth thee. Thou goest out beau'ed up in search of danger.." %(hero_name,helper.name)
-        # NOT THIS ____theHero = Hero(hero_name, has_helper == True)
-        theHero.has_helper = True
-    else:
-        print "That was dumbeth.. Thou goest out into thine world alone in search of danger.."
     print "You encountered a wild %s!" % monster.name
     while(theHero.is_alive() and monster.is_alive()):
         message = """        You have %d health and %d power.
@@ -33,16 +24,14 @@ while (theHero.is_alive()):
         2. do a little dance
         3. flee""" 
         print message % (theHero.health,theHero.power, monster.health, monster.power, monster.name)
-        if get_helper == "y":
-            print "the health of %s is %d, and their damage is %d" %(helper.name,helper.health,helper.damage)
         # Get the user's choice
-        user_input = raw_input("> ")
+        user_input = raw_input("        > ")
 
         if user_input == "1":
             # The hero has decided to attack!
             # subtract goblins health by hero power
             monster.take_damage(theHero.power)
-            print "You have done %d damage to the monster!" % theHero.power
+            print "You have done %d damage to the %s!" % (theHero.power, monster.name)
         elif user_input == "2":
             theHero.health += 10
             print """The monster stares at you in disbelief of your skill and prowess. 
@@ -58,28 +47,23 @@ while (theHero.is_alive()):
         # Now, it's the monster's turn
         # unless he just died from the hero attack
         if monster.health > 0:
-            if theHero.has_helper:
-                theHero.take_damage(monster.power, helper)
-                print "The monster hits you for %d damage" % monster.power
-            else:
-                theHero.take_damage(monster.power, [])
+            theHero.take_damage(monster.power)
+            print "the %s striketh thee for %d damage!" %(monster.name,monster.power)
             if theHero.health <= 0:
                 print "Thou hast been slain."
                 break
         # else:
             # os.system("say Hooray. Thou hast killed the monster!")
         if theHero.health < 5:
-            print "%s has gone into a rage as death appraoches. Power increased!" % hero_name
+            print "%s has gone into a rage as death approaches. Power increased!" % hero_name
             theHero.power += 5
         if not theHero.is_alive: 
             print 'You died... Game over!'
             break
-    if theHero.is_alive() and monster.is_alive() == False:
-        play_again = raw_input("%s wins! Play again (y or n)? > ") % theHero.name
-        if play_again == "y":
-            monster.is_alive == True
-        else:
-            break
+        if not monster.is_alive:
+            keep_on = raw_input("Would you like to keep playing (y or n)? > ")
+            if keep_on == "y":
+                theHero.health = 10
+            else:
+                break
         os.system("clear")
-        
-

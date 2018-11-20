@@ -18,7 +18,7 @@ class Person(object):
         self.name = name
         self.email = email
         self.phone = phone
-        self.friends = friends
+        self.friends = []
         self.greeting_count = 0
     def greet(self, other_person):
         print 'Hello %s, I am %s!' % (other_person.name, self.name)
@@ -28,7 +28,7 @@ class Person(object):
     def add_friend(self, other_person_name):
         self.friends.append(other_person_name.name)
     def __repr__(self):
-        return "%s %s %s " % ( self.name, self.email, self.phone)
+        return "%s %s %s " % (self.name, self.email, self.phone)
 # Write code to
 
 # Instantiate an instance object of Person with name of 'Sonny', email of 'sonny@hotmail.com', 
