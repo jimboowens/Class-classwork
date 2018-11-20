@@ -8,8 +8,8 @@ hero_name = raw_input( "What is your name, brave soul? > ")
 
 theHero = Hero(hero_name)
 theHero.cheer_hero()
-
-while (theHero.is_alive()):
+keep_on = "y"
+while (theHero.is_alive() and keep_on == "y"):
     randMonster = random.randint(1,3)
     if randMonster == 1:
         monster = Goblin()
@@ -40,7 +40,7 @@ while (theHero.is_alive()):
         elif user_input == "3":
             print "I hopeth thou canst live with thineself, %s" % theHero.name
             # the break statement will end the loop IMMEDIATELY!!
-            break
+            keep_on = "n"
         else:
             # user entered something that we didnt offer
             print "Thou fool. Thou hast stumbledeth (invalid input)"
@@ -59,11 +59,14 @@ while (theHero.is_alive()):
             theHero.power += 5
         if not theHero.is_alive: 
             print 'You died... Game over!'
-            break
-        if not monster.is_alive:
-            keep_on = raw_input("Would you like to keep playing (y or n)? > ")
-            if keep_on == "y":
-                theHero.health = 10
-            else:
-                break
-        os.system("clear")
+        if monster.health <=0:
+            print "The %s hath been slain! Great work, hero %s!" %(monster.name,hero_name)
+        # print "%d is the monster's health." %monster.health
+        # else:
+        #     keep_on = raw_input("Would you like to keep playing (y or n)? > ")
+        #     if keep_on == "y":
+        #         theHero.health = 10
+        #     else:    
+        #         break
+        print "%d is the monster's health." %monster.health
+        # os.system("clear")
