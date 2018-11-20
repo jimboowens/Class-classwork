@@ -54,7 +54,7 @@ while (theHero.is_alive()):
         # Now, it's the monster's turn
         # unless he just died from the hero attack
         if monster.health > 0:
-            theHero.health -= monster.power
+            theHero.take_damage(monster.power,helper)
             print "The monster hits you for %d damage" % monster.power
             if theHero.health <= 0:
                 print "Thou hast been slain."

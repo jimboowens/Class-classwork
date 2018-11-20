@@ -7,7 +7,8 @@ class Hero (object):
         self.power = random.randint(0,10)
     def cheer_hero(self):
         print "Welcome, valiant %s! " % (self.name)
-    def take_damage(self, amount_of_damage):
+    def take_damage(self, amount_of_damage, helper):
         self.health -= amount_of_damage
+        helper.defend()
     def is_alive (self):
         return self.health > 0

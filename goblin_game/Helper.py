@@ -5,7 +5,7 @@ class Helper (object):
         self.health = 5
         self.damage = random.randint(1,4)
     def defend (self):
-        defend_or_deflect = random.randint(1,3)
+        defend_or_deflect = random.randint(1,2)
         if Hero.take_damage():
             if defend_or_deflect == 1:
                 monster.health-=self.damage()
