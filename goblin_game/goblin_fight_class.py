@@ -6,8 +6,10 @@ from Vampire import Vampire
 from Helper import Helper
 hero_name = raw_input( "What is your name, brave soul? > ")
 get_helper = raw_input("Would you like to enlist a helper (y or n)? > ")
-helper = Helper()
+# when it's a function, you need a (), but when a variable no..
+
 theHero = Hero(hero_name)
+helper = Helper()
 theHero.cheer_hero()
 
 while (theHero.is_alive()):
@@ -18,6 +20,8 @@ while (theHero.is_alive()):
         monster = Vampire()
     if get_helper == "y":
         print "Wise choice, sagely %s! %s shalt helpeth thee. Thou goest out beau'ed up in search of danger.." %(hero_name,helper.name)
+        # NOT THIS ____theHero = Hero(hero_name, has_helper == True)
+        theHero.has_helper = True
     else:
         print "That was dumbeth.. Thou goest out into thine world alone in search of danger.."
     print "You encountered a wild %s!" % monster.name
@@ -54,8 +58,11 @@ while (theHero.is_alive()):
         # Now, it's the monster's turn
         # unless he just died from the hero attack
         if monster.health > 0:
-            theHero.take_damage(monster.power,helper)
-            print "The monster hits you for %d damage" % monster.power
+            if theHero.has_helper:
+                theHero.take_damage(monster.power, helper)
+                print "The monster hits you for %d damage" % monster.power
+            else:
+                theHero.take_damage(monster.power, [])
             if theHero.health <= 0:
                 print "Thou hast been slain."
                 break
@@ -68,7 +75,7 @@ while (theHero.is_alive()):
             print 'You died... Game over!'
             break
     if theHero.is_alive() and monster.is_alive() == False:
-        play_again = raw_input("You win! Play again (y or n)? > ")
+        play_again = raw_input("%s wins! Play again (y or n)? > ") % theHero.name
         if play_again == "y":
             monster.is_alive == True
         else:
