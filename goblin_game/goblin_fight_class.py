@@ -3,7 +3,10 @@ import random
 from Hero import Hero
 from Goblin import Goblin
 from Vampire import Vampire
+from Helper import Helper
 hero_name = raw_input( "What is your name, brave soul? > ")
+get_helper = raw_input("Would you like to enlist a helper (y or n)? > ")
+helper = Helper()
 theHero = Hero(hero_name)
 theHero.cheer_hero()
 
@@ -13,6 +16,10 @@ while (theHero.is_alive()):
         monster = Goblin()
     else:
         monster = Vampire()
+    if get_helper == "y":
+        print "Wise choice, sagely %s! %s shalt helpeth thee. Thou goest out beau'ed up in search of danger.." %(hero_name,helper.name)
+    else:
+        print "That was dumbeth.. Thou goest out into thine world alone in search of danger.."
     print "You encountered a wild %s!" % monster.name
     while(theHero.is_alive() and monster.is_alive()):
         message = """        You have %d health and %d power.
@@ -22,6 +29,8 @@ while (theHero.is_alive()):
         2. do a little dance
         3. flee""" 
         print message % (theHero.health,theHero.power, monster.health, monster.power, monster.name)
+        if get_helper == "y":
+            print "the health of %s is %d, and their damage is %d" %(helper.name,helper.health,helper.damage)
         # Get the user's choice
         user_input = raw_input("> ")
 

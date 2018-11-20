@@ -4,7 +4,7 @@ class Vampire (object):
     def __init__ (self):
         self.name = "Vampire"
         self.health = 12
-        self.power = random.randint(5,8)
+        self.power = random.randint(0,8)
     def take_damage(self, amount_of_damage):
         self.health -= amount_of_damage
     def is_alive(self):
