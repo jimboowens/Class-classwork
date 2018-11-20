@@ -14,7 +14,6 @@
 # 2. classes have methods
 
 class Person(object):
-    # this is called a constructor
     def __init__(self, name, email, phone, friends =[]):
         self.name = name
         self.email = email
@@ -43,20 +42,20 @@ class Person(object):
 Sonny = Person("Sonny", "sonny@hotmail.com", "483-485-4948", [])
 Jordan = Person("Jordan", "jordan@aol.com", "495-586-3456", [])
 Sonny.greet(Jordan)
-# print Sonny.email
-# print Sonny.phone
-# print Jordan.email
-# print Jordan.phone
-# Sonny.print_contact_info()
+print Sonny.email
+print Sonny.phone
+print Jordan.email
+print Jordan.phone
+Sonny.print_contact_info()
 Sonny.friends.append(Jordan.name)
 Jordan.friends.append(Sonny.name)
-# Sonny.print_contact_info()
-# print len(Jordan.friends)
-# print Jordan.friends
+Sonny.print_contact_info()
+print len(Jordan.friends)
+print Jordan.friends
 Sonny.add_friend(Jordan)
-# print Sonny.friends
-# print Sonny.greeting_count
-# print Jordan
+print Sonny.friends
+print Sonny.greeting_count
+print Jordan
 
 class Vehicle(object):
     # whenever we start making a new car, __init__ will run. 
@@ -71,5 +70,5 @@ class Vehicle(object):
         print self.year, self.make, self.model
 
 car = Vehicle ("Nissan", "Leaf", "2015")
-# print car.year, car.make, car.model
-# car.print_info()
+print car.year, car.make, car.model
+car.print_info()
